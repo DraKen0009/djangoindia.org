@@ -26,12 +26,15 @@ jobs:
           cd backend
           python manage.py makemigrations
           python manage.py migrate
-          python manage.py runserver 8000 &
-        env:
-          DJANGO_SETTINGS_MODULE: 'djangoindia.settings.local'
+          python manage.py runserver 8000 > server.log 2>&1 &
+      
 
       - name: Wait for the backend server to start
-        run: sleep 10  # Waits for 10 seconds
+        run: sleep 30  # Waits for 10 seconds
+
+      - name: Output backend server logs
+        run: cat backend/server.log
+
 
       - name: Check if backend server is running
         run: |
