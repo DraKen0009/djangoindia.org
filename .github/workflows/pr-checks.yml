@@ -38,4 +38,4 @@ jobs:
 
       - name: Check if backend server is running
         run: |
-          curl --silent --fail http://localhost:8000 || exit 1
+          curl --silent --fail http://localhost:8000/health/ || exit 1

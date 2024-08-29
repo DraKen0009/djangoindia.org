@@ -23,8 +23,14 @@ from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+from django.http import HttpResponse
+
+def health_check(request):
+    return HttpResponse("OK")
+
 
 urlpatterns = [
+    path('health/', health_check, name='health_check'),
     path(f"api/{settings.ADMIN_URL}", admin.site.urls),
     path("api/v1/", include("djangoindia.api.urls")),
     path("api/v1/schema/", SpectacularAPIView.as_view(), name="api-schema"),
