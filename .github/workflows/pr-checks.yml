@@ -11,16 +11,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up Node.js for frontend build
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+#
+#      - name: Set up Node.js for frontend build
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: '20'
+#
+#      - name: Install frontend dependencies
+#        run: |
+#          cd frontend
+#          npm install
 
       - name: Set up Python for backend
         uses: actions/setup-python@v4
@@ -34,7 +34,7 @@ jobs:
       - name: Start backend server
         run: |
           cd backend
-          python manage.py runserver &
+          python manage.py runserver 8000 &
         env:
           DJANGO_SETTINGS_MODULE: 'djangoindia.settings.local'
 
