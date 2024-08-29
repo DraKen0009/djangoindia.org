@@ -11,16 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-#
-#      - name: Set up Node.js for frontend build
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: '20'
-#
-#      - name: Install frontend dependencies
-#        run: |
-#          cd frontend
-#          npm install
 
       - name: Set up Python for backend
         uses: actions/setup-python@v4
@@ -34,11 +24,15 @@ jobs:
       - name: Start backend server
         run: |
           cd backend
+          python manage.py makemigrations
+          python manage.py migrate
           python manage.py runserver 8000 &
         env:
           DJANGO_SETTINGS_MODULE: 'djangoindia.settings.local'
-#
-#      - name: Check if backend server is running
-#        run: |
-#          curl --silent --fail http://localhost:8000 || exit 1
 
+      - name: Wait for the backend server to start
+        run: sleep 10  # Waits for 10 seconds
+
+      - name: Check if backend server is running
+        run: |
+          curl --silent --fail http://localhost:8000 || exit 1
