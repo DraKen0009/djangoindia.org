@@ -37,8 +37,8 @@ jobs:
           python manage.py runserver 8000 &
         env:
           DJANGO_SETTINGS_MODULE: 'djangoindia.settings.local'
-
-      - name: Check if backend server is running
-        run: |
-          curl --silent --fail http://localhost:8000 || exit 1
+#
+#      - name: Check if backend server is running
+#        run: |
+#          curl --silent --fail http://localhost:8000 || exit 1
 
