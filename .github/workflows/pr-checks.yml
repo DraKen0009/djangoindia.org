@@ -36,7 +36,7 @@ jobs:
           cd backend
           python manage.py runserver &
         env:
-          DJANGO_SETTINGS_MODULE: 'djangoindia.settings.production'
+          DJANGO_SETTINGS_MODULE: 'djangoindia.settings.local'
 
       - name: Check if backend server is running
         run: |
