@@ -22,10 +22,10 @@ jobs:
           cd frontend
           npm install
 
-      - name: Build frontend
-        run: |
-          cd frontend 
-          npm run build
+#      - name: Build frontend
+#        run: |
+#          cd frontend
+#          npm run build
 
       - name: Set up Python for backend
         uses: actions/setup-python@v4
