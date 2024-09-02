@@ -24,18 +24,14 @@ jobs:
       - name: Start backend server
         run: |
           cd backend
-          python manage.py makemigrations
-          python manage.py migrate
-          python manage.py runserver 8000 > server.log 2>&1 &
-      
+          python manage.py runserver
 
       - name: Wait for the backend server to start
-        run: sleep 30  # Waits for 10 seconds
-
-      - name: Output backend server logs
-        run: cat backend/server.log
+        run: |
+          echo "Waiting for the server to start..."
+          sleep 20  # Increase the wait time to 60 seconds
 
 
       - name: Check if backend server is running
         run: |
-          curl --silent --fail http://localhost:8000/health/ || exit 1
+          curl --silent --fail http://localhost:8000/health/ || (echo "Server is not running!" && exit 1)

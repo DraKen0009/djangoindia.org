@@ -26,7 +26,7 @@ from drf_spectacular.views import (
 from django.http import HttpResponse
 
 def health_check(request):
-    return HttpResponse("OK")
+    return HttpResponse("OK", status=200)
 
 
 urlpatterns = [
